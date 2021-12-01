@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-#test
 # introduce classes to the students
 class Simulation:
     def __init__(self, dt, x, v, box, r_cut, shift):
@@ -169,6 +168,6 @@ if __name__ == "__main__":
             temperatures.append(sim.temperature())
             rdfs.append(sim.rdf())
     save_number = 1000
-    if args.cpt % save_number == 0:
-        state = {'energies': energies}
+        if i % save_number == 0:
+        state = {'energies': energies, 'velocities': sim.v, 'positions': positions }
         write_checkpoint(state, args.cpt, overwrite=True)
