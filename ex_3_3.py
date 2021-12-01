@@ -157,6 +157,9 @@ if __name__ == "__main__":
     # If checkpoint is used, also the forces have to be reloaded!
     if args.cpt and os.path.exists(args.cpt):
         sim.f = f
+        
+        
+    save_number = 1000
 
     for i in tqdm.tqdm(range(N_TIME_STEPS)):
         sim.propagate()
@@ -167,7 +170,7 @@ if __name__ == "__main__":
             energies.append(np.sum(sim.energy()))
             temperatures.append(sim.temperature())
             rdfs.append(sim.rdf())
-    save_number = 1000
         if i % save_number == 0:
-        state = {'energies': energies, 'velocities': sim.v, 'positions': positions }
-        write_checkpoint(state, args.cpt, overwrite=True)
+            state = {'energies': energies, 'velocities': sim.v, 'positions': positions }
+            write_checkpoint(state, args.cpt, overwrite=True)
+        break
